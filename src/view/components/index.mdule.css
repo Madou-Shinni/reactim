@@ -1,0 +1,49 @@
+.chat-bubble {
+    position: relative;
+    max-width: 100%; /* 限制最大宽度为父容器的宽度 */
+    margin: 10px;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.chat-bubble p {
+    padding: 10px;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.sender {
+    background-color: #4CAF50;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.sender::after {
+    content: '';
+    position: absolute;
+    right: -10px; /* 调整三角形到右侧边框的距离 */
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #4CAF50; /* 背景色对应发送者气泡颜色 */
+}
+
+.receiver {
+    background-color: rgba(255,255,255, 0.9);
+    color: #000;
+    align-self: flex-start;
+}
+
+.receiver::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* 调整三角形到右侧边框的距离 */
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(255,255,255, 0.9) transparent transparent; /* 背景色对应接收者气泡颜色 */
+}
