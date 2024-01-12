@@ -1,21 +1,20 @@
-import { useRef, useEffect } from 'react';
+import {useRef, useEffect, useState} from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import ChatBubble from "./ChatBubble.jsx";
 
-const ChatPreview = ({ messages }) => {
-    const scrollbarRef = useRef(null);
+const ChatPreview = ({ messages,styles }) => {
+    const [container,setContainer] = useState(null);
 
     useEffect(() => {
         // 滚动到底部
-        if (scrollbarRef.current) {
-            const container = scrollbarRef.current;
+        if (container) {
             container.scrollTop = container.scrollHeight;
         }
     }, [messages]);
 
     return (
-        <div className="p-4">
-            <PerfectScrollbar ref={scrollbarRef} options={{ suppressScrollY: false, useBothWheelAxes: true }}>
+        <div>
+            <PerfectScrollbar containerRef={(ref) => setContainer(ref)} onScrollY={()=>{console.log(`scrolled to: ${container}.`)}} style={styles} options={{ suppressScrollY: false, useBothWheelAxes: true }}>
                 {messages.map((message, index) => (
                     <div key={index} className={'flex flex-col p-4'}>
                         <ChatBubble content={message.content} isSender={message.sender} />

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {FriendList} from "../components/Friend.jsx";
 import Header from "../components/Header.jsx";
 
@@ -7,6 +7,10 @@ import ChatInput from "../components/ChatInput.jsx";
 import ChatPreview from "../components/ChatPreview.jsx";
 import useWebSocket from "react-use-websocket";
 import {useParams} from "react-router-dom";
+
+const MessageType = {
+    Private: 2
+}
 
 const Home = () => {
     const params = useParams()
@@ -28,20 +32,15 @@ const Home = () => {
         }
     }, [lastJsonMessage, setMessageHistory]);
 
-    useEffect(() => {
-        // 当 message 发生变化时发送消息
-        if (message.content) {
-            sendJsonMessage(message);
-        }
-    }, [message,sendJsonMessage]);
-
     const handleClick = (content) => {
-        setMessage({ ...message, content: content });
+        message.content = content
+        setMessage(message)
+        sendJsonMessage(message)
     };
 
     const handleFriendClick = (friend) => {
-        setTitle(friend.name)
-        setMessage({...message, type:2, to:friend.id})
+        setTitle(friend.name+friend.id)
+        setMessage({...message, type:MessageType.Private, to:friend.id})
     };
 
     return <div className={'w-full h-full'}>
@@ -49,9 +48,9 @@ const Home = () => {
             <div className="w-1/4 bg-gray-200 p-4">
                 <FriendList friends={friends} onFriendClick={handleFriendClick}/>
             </div>
-            <div className="flex-1 p-4 relative bg-gradient-to-bl">
+            <div className="flex-1 p-4 h-100vh relative bg-gradient-to-bl">
                 <Header title={title}/>
-                <ChatPreview messages={messageHistory}/>
+                <ChatPreview messages={messageHistory} styles={{height:'90vh'}}/>
                 <div className={'absolute bottom-[-10px] left-0 right-0'}>
                     <ChatInput onSendMessage={(content) => {handleClick(content)}} />
                 </div>
