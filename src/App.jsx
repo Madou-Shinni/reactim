@@ -1,9 +1,12 @@
-import Home from "./view/home/Home.jsx";
+import Router from "./routers/index.jsx";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
     <>
-        <Home/>
+        <BrowserRouter>
+            <Router/>
+        </BrowserRouter>
     </>
   )
 }

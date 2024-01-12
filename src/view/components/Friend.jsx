@@ -1,5 +1,5 @@
-const Friend = ({friend}) => {
-    return <li className="flex items-center mb-2">
+const Friend = ({friend,onClick}) => {
+    return <li className="flex items-center mb-2" onClick={() => onClick(friend)}>
         <img
             src={friend.avatar}
             alt={friend.name}
@@ -15,13 +15,13 @@ const Friend = ({friend}) => {
 export default Friend
 
 
-const FriendList = ({ friends }) => {
+const FriendList = ({ friends,onFriendClick }) => {
     return (
         <div className="p-4">
             <h2 className="text-2xl font-bold mb-4">好友列表</h2>
             <ul>
                 {friends.map((friend) => (
-                    <Friend key={friend.id} friend={friend} />
+                    <Friend key={friend.id} friend={friend} onClick={onFriendClick} />
                 ))}
             </ul>
         </div>
