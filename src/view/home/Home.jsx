@@ -11,13 +11,13 @@ const Home = () => {
     const [messageHistory, setMessageHistory] = useState([]);
 
     const socketUrl = 'ws://localhost:9999/ws/conn?userId=1';
-    const { sendMessage,sendJsonMessage , lastMessage, readyState } = useWebSocket(socketUrl);
+    const { sendMessage,sendJsonMessage , lastMessage,lastJsonMessage,getWebSocket, readyState } = useWebSocket(socketUrl);
 
     useEffect(() => {
-        if (lastMessage !== null) {
-            setMessageHistory((prev) => prev.concat(lastMessage));
+        if (lastJsonMessage !== null) {
+            setMessageHistory((prev) => prev.concat(lastJsonMessage));
         }
-    }, [lastMessage, setMessageHistory]);
+    }, [lastJsonMessage, setMessageHistory]);
 
     const handleClick = (content) => {
         sendJsonMessage({ type: 2,from: 1,to: 1, content });
