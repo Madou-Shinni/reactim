@@ -14,7 +14,7 @@ const ChatPreview = ({ messages,styles }) => {
 
     return (
         <div>
-            <PerfectScrollbar containerRef={(ref) => setContainer(ref)} onScrollY={()=>{console.log(`scrolled to: ${container}.`)}} style={styles} options={{ suppressScrollY: false, useBothWheelAxes: true }}>
+            <PerfectScrollbar containerRef={(ref) => setContainer(ref)} style={styles} options={{ suppressScrollY: false, useBothWheelAxes: true }}>
                 {messages.map((message, index) => (
                     <div key={index} className={'flex flex-col p-4'}>
                         <ChatBubble content={message.content} isSender={message.sender} />
