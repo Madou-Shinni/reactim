@@ -23,16 +23,13 @@ const ChatInput = ({ onSendMessage }) => {
         <div className={'flex-1'}>
             <input
                 type="text"
-                placeholder="输入消息..."
+                placeholder=""
                 value={message}
                 onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 className="p-2 outline-none border border-gray-300 rounded w-full"
             />
         </div>
-        <button onClick={handleSendMessage} className="p-2 bg-blue-500 text-white rounded ml-2">
-            发送
-        </button>
     </div>
 };
 

@@ -7,6 +7,8 @@ import ChatInput from "../components/ChatInput.jsx";
 import ChatPreview from "../components/ChatPreview.jsx";
 import useWebSocket from "react-use-websocket";
 import {useParams} from "react-router-dom";
+import {ConversationList} from "@/view/components/Conversation.jsx";
+import TabSwitcher from "@/view/components/TabSwitcher.jsx";
 
 const MessageType = {
     Private: 2
@@ -46,7 +48,10 @@ const Home = () => {
     return <div className={'w-full h-full'}>
         <div className="w-full min-h-screen bg-gray-100 flex">
             <div className="w-1/4 bg-gray-200 p-4">
-                <FriendList friends={friends} onFriendClick={handleFriendClick}/>
+                <TabSwitcher>
+                    <FriendList className={'w-full'} tabLabel="Friends" friends={friends} onFriendClick={handleFriendClick}/>
+                    <ConversationList className={'w-full'} tabLabel="Conversations"/>
+                </TabSwitcher>
             </div>
             <div className="flex-1 p-4 h-100vh relative bg-gradient-to-bl">
                 <Header title={title}/>

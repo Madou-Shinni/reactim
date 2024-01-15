@@ -7,7 +7,7 @@ const Friend = ({friend,onClick}) => {
         />
         <div className={'border-b border-gray-300 w-full'}>
             <p className="w-full font-bold">{friend.name}</p>
-            <p className="w-full text-gray-500">{friend.status}</p>
+            <p className="w-full text-gray-500 text-[13px] text-gray-400">{friend.status}</p>
         </div>
     </li>
 }
@@ -15,9 +15,9 @@ const Friend = ({friend,onClick}) => {
 export default Friend
 
 
-const FriendList = ({ friends,onFriendClick }) => {
+const FriendList = ({ friends,onFriendClick,...props }) => {
     return (
-        <div className="p-4">
+        <div className={`p-4 ${props.className}`}>
             <h2 className="text-2xl font-bold mb-4">好友列表</h2>
             <ul>
                 {friends.map((friend) => (
