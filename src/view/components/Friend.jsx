@@ -32,7 +32,7 @@ const FriendList = ({ onFriendClick,...props }) => {
         <div className={`p-4 ${props.className}`}>
             <h2 className="text-2xl font-bold mb-4">好友列表</h2>
             <ul>
-                {data.data.map((item) => (
+                {data.list.map((item) => (
                     <Friend key={item.friend.id} friend={item.friend} onClick={onFriendClick} />
                 ))}
             </ul>
