@@ -49,7 +49,7 @@ const Home = () => {
         <div className="w-full min-h-screen bg-gray-100 flex">
             <div className="w-1/4 bg-gray-200 p-4">
                 <TabSwitcher>
-                    <FriendList className={'w-full'} tabLabel="Friends" friends={friends} onFriendClick={handleFriendClick}/>
+                    <FriendList className={'w-full'} tabLabel="Friends" onFriendClick={handleFriendClick}/>
                     <ConversationList className={'w-full'} tabLabel="Conversations"/>
                 </TabSwitcher>
             </div>

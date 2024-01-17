@@ -7,6 +7,7 @@ function useRequest(request, config) {
         error,
         mutate,
         isValidating,
+        isLoading,
     } = useSWR(request.url, () => AxiosInstance.request(request), config);
 
     return {
@@ -15,6 +16,7 @@ function useRequest(request, config) {
         error,
         mutate,
         isValidating,
+        isLoading,
     };
 }
 

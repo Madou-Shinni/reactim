@@ -22,6 +22,7 @@ const Login = () => {
         return <Loading/>;
     }
     if (data) {
+        localStorage.setItem('userInfo', JSON.stringify(data));
         navigate(`/home/${data.user.id}`);
         return
     }
